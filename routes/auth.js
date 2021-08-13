@@ -6,6 +6,7 @@ const ApiKeysService = require('../services/apiKeys');
 const UsersService = require('../services/users');
 const validationHandler = require('../utils/middleware/validationHandler');
 
+
 const {
   createUserSchema,
   createProviderUserSchema
@@ -24,11 +25,11 @@ function authApi(app) {
   const usersService = new UsersService();
 
   router.post('/sign-in', async function(req, res, next) {
-    const { apiKeyToken } = req.body;
+    // const { apiKeyToken } = req.body;
 
-    if (!apiKeyToken) {
-      next(boom.unauthorized('apiKeyToken is required'));
-    }
+    // if (!apiKeyToken) {
+    //   next(boom.unauthorized('apiKeyToken is required'));
+    // }
 
     passport.authenticate('basic', function(error, user) {
       try {
@@ -41,13 +42,14 @@ function authApi(app) {
             next(error);
           }
 
-          const apiKey = await apiKeysService.getApiKey({ token: apiKeyToken });
+          // const apiKey = await apiKeysService.getApiKey({ token: apiKeyToken });
 
-          if (!apiKey) {
-            next(boom.unauthorized());
-          }
+          // if (!apiKey) {
+          //   next(boom.unauthorized());
+          // }
 
-          const { _id: id, name, email } = user;
+          const { _id: id, name, email, scopesKey } = user;
+          const apiKey = await apiKeysService.getApiKey({ token: scopesKey });
 
           const payload = {
             sub: id,

@@ -13,7 +13,7 @@ function scopesValidationHandler(allowedScopes) {
     if (hasAccess) {
       next();
     } else {
-      next(boom.unauthorized('Insufficient scoopes'));
+      next(boom.unauthorized('Insufficient scopes'));
     }
   };
 }

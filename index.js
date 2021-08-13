@@ -5,8 +5,8 @@ const app = express();
 const { config } = require('./config/index');
 
 const authApi = require('./routes/auth');
-const moviesApi = require('./routes/movies.js');
-const userMoviesApi = require('./routes/userMovies.js');
+const projectsApi = require('./routes/projects.js');
+const userProjectsApi = require('./routes/userProjects.js');
 
 const {
   logErrors,
@@ -22,8 +22,8 @@ app.use(helmet());
 
 // routes
 authApi(app);
-moviesApi(app);
-userMoviesApi(app);
+projectsApi(app);
+userProjectsApi(app);
 
 // Catch 404
 app.use(notFoundHandler);

@@ -1,14 +1,14 @@
 const sinon = require('sinon');
 
-const { moviesMock, filteredMoviesMock } = require('./movies');
+const { projectsMock, filteredProjectsMock } = require('./projects');
 
 const getAllStub = sinon.stub();
-getAllStub.withArgs('movies').resolves(moviesMock);
+getAllStub.withArgs('projects').resolves(projectsMock);
 
-const tagQuery = { tags: { $in: ['Drama'] } };
-getAllStub.withArgs('movies', tagQuery).resolves(filteredMoviesMock('Drama'));
+const tagQuery = { tags: { $in: ['Archived'] } };
+getAllStub.withArgs('projects', tagQuery).resolves(filteredProjectsMock('Archived'));
 
-const createStub = sinon.stub().resolves(moviesMock[0].id);
+const createStub = sinon.stub().resolves(projectsMock[0].id);
 
 class MongoLibMock {
   getAll(collection, query) {

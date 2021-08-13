@@ -8,22 +8,22 @@ const MongoLib = require('../../lib/mongo');
 const adminScopes = [
   'signin:auth',
   'signup:auth',
-  'read:movies',
-  'create:movies',
-  'update:movies',
-  'delete:movies',
-  'read:user-movies',
-  'create:user-movies',
-  'delete:user-movies'
+  'read:projects',
+  'create:projects',
+  'update:projects',
+  'delete:projects',
+  'read:user-projects',
+  'create:user-projects',
+  'delete:user-projects'
 ];
 
 const publicScopes = [
   'signin:auth',
   'signup:auth',
-  'read:movies',
-  'read:user-movies',
-  'create:user-movies',
-  'delete:user-movies'
+  'read:projects',
+  'read:user-projects',
+  'create:user-projects',
+  'delete:user-projects'
 ];
 
 const apiKeys = [
@@ -51,7 +51,7 @@ async function seedApiKeys() {
     });
 
     await Promise.all(promises);
-    debug(chalk.green(`${promises.length} api keys have been created succesfully`)); // prettier-ignore
+    debug(chalk.green(`${promises.length} api keys have been created successfully`)); // prettier-ignore
     return process.exit(0);
   } catch (error) {
     debug(chalk.red(error));
